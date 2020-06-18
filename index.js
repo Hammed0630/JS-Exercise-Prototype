@@ -39,27 +39,33 @@ Airplane.prototype.land = function () {
         + It should return a string with `name` and `age`. Example: "Mary, 50"
 */
 
+// function Person( age, name){
+//   this.age = age;
+//   this.name = name;
+//   this.stomach = [];
+// }
 function Person(attributes) {
   this.age = attributes.age;
   this.name = attributes.name;
   this.stomach = [];
 }
 Person.prototype.eat = 
-function(edible){
+  function(edible){
   if(this.stomach.length < 10){
     this.stomach.push(edible);
   }
 }
-Person.prototype.poop = function(){
+Person.prototype.poop = 
+  function(){
   this.stomach = [];
 }
-Person.prototype.toString = function (){
-  console.log(`${this.name}, ${this.age}`)
+Person.prototype.toString = 
+  function(){
+   return `${this.name}, ${this.age}`
 }
-const info = new Person({
-  name: "med",
-  age: 25,
-})
+
+const myName = new Person('Ashton', 34);
+
 
 /*
   TASK 2
@@ -93,18 +99,27 @@ Car.prototype.fill = function(gallons){
     - Besides the methods on Person.prototype, babies have the ability to `.play()`:
         + Should return a string "Playing with x", x being the favorite toy.
 */
-function Baby() {
-
+function Baby(name, age, favoriteToy ){
+  Person.call(this, name, age);
+  this.name = name;
+  this.age = age;
+  this.favoriteToy = favoriteToy;
 }
+Baby.prototype = Object.create(Person.prototype);
+Baby.prototype.play = function(){
+  return `Playing with ${this.favoriteToy}`
+}
+  
+
 
 /* 
   TASK 4
 
   In your own words explain the four principles for the "this" keyword below:
-  1. 
-  2. 
-  3. 
-  4. 
+  1. implicit binding
+  2. explicit binding
+  3. default binding
+  4. new binding
 */
 
 
